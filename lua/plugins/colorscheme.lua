@@ -8,9 +8,14 @@ return {
         dim_inactive = false,
         palette_overrides = {
           -- Dull Version
-          bright_red = "#ea6b64",
-          bright_orange = "#ea894f",
-          bright_yellow = "#dba655",
+          bright_red = "#e2534c",
+          bright_orange = "#ea7e40",
+          bright_yellow = "#e0ac32",
+
+          -- More dull
+          -- bright_red = "#ea6b64",
+          -- bright_orange = "#ea894f",
+          -- bright_yellow = "#dba655",
 
           -- Dull green Option 1
           bright_green = "#c5c850",
@@ -19,21 +24,44 @@ return {
           -- bright_green = "#acbb67",
 
           -- Brightest: comment out everything
+          dark0_hard = "#1c2020",
+        },
+        overrides = {
+          --   -- keep types normal (not bold)
+          --   ["@type"] = { bold = true },
+          --   ["@type.builtin"] = { bold = true },
+          -- ["@keyword.storage"] = { bold = false, italic = false },
+          -- ["@keyword.exception"] = { bold = false, italic = false },
+          -- ["@conditional"] = { bold = false, italic = false },
+          -- ["@keyword.operator"] = { bold = false, italic = false },
+          -- ["@keyword.return"] = { bold = false, italic = false },
+          ["@function.call"] = { link = "GruvboxGreen" },
+          ["@method.call"] = { link = "GruvboxGreen" },
+          ["@function"] = { link = "GruvboxGreen" },
+          ["@function.builtin"] = { link = "GruvboxGreen" },
+          ["@function.method"] = { link = "GruvboxGreen" },
+          ["@method"] = { link = "GruvboxGreen" },
+          -- ["@variable"] = { bold = false, italic = false },
+          -- ["@property"] = { bold = false, italic = false },
+          -- ["@parameter"] = { bold = false, italic = false },
+          -- ["@variable.member"] = { bold = false, italic = false },
+          -- ["@string"] = { bold = false, italic = false },
+          -- ["@number"] = { bold = false, italic = false },
         },
       })
 
       vim.o.background = "dark"
-      vim.cmd.colorscheme("gruvbox")
-
-      -- Cursor for gruvbox only
-      vim.opt.guicursor = table.concat({
-        "n-v-c:block-CursorNormal",
-        "i:block-CursorInsert",
-        "r-cr:block-CursorNormal",
-      }, ",")
-
-      vim.api.nvim_set_hl(0, "CursorNormal", { bg = "#dac59c", fg = "#1e1e2e" })
-      vim.api.nvim_set_hl(0, "CursorInsert", { bg = "#ffffff", fg = "#1e1e2e" })
+      --   vim.cmd.colorscheme("gruvbox")
+      --
+      --   -- Cursor for gruvbox only
+      --   vim.opt.guicursor = table.concat({
+      --     "n-v-c:block-CursorNormal",
+      --     "i:block-CursorInsert",
+      --     "r-cr:block-CursorNormal",
+      --   }, ",")
+      --
+      --   vim.api.nvim_set_hl(0, "CursorNormal", { bg = "#dac59c", fg = "#1e1e2e" })
+      --   vim.api.nvim_set_hl(0, "CursorInsert", { bg = "#ffffff", fg = "#1e1e2e" })
     end,
   },
   -- custom catppuccin (comment out if you want default)
@@ -118,6 +146,27 @@ return {
       -- -- Set cursor highlight groups
       -- vim.api.nvim_set_hl(0, "CursorNormal", { bg = "#9fb5fd", fg = "#1e1e2e" })
       -- vim.api.nvim_set_hl(0, "CursorInsert", { bg = "#ecf0ff", fg = "#1e1e2e" })
+    end,
+  },
+  {
+    "webhooked/kanso.nvim",
+    lazy = false,
+    config = function()
+      require("kanso").setup({
+        bold = false,
+        foreground = {
+          dark = "saturated",
+        },
+      })
+      vim.cmd.colorscheme("kanso-zen")
+      vim.opt.guicursor = table.concat({
+        "n-v-c:block-CursorNormal",
+        "i:block-CursorInsert",
+        "r-cr:block-CursorNormal",
+      }, ",")
+      -- Set cursor highlight groups
+      vim.api.nvim_set_hl(0, "CursorNormal", { bg = "#cdb374", fg = "#1e1e2e" })
+      vim.api.nvim_set_hl(0, "CursorInsert", { bg = "#ecf0ff", fg = "#1e1e2e" })
     end,
   },
 }

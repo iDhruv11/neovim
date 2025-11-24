@@ -1,6 +1,6 @@
 -- Autocmds are automatically loaded on the VeryLazy event
 -- Default autocmds that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
--- hello 
+-- hello
 -- Add any additional autocmds here
 -- with `vim.api.nvim_create_autocmd`
 --
@@ -18,24 +18,21 @@ vim.api.nvim_create_autocmd("InsertLeave", {
   desc = "Auto-save file when leaving insert mode",
 })
 
--- Italicize Keywords
+-- Remove ALL bold + apply your italic rules
 vim.api.nvim_create_autocmd("ColorScheme", {
   callback = function()
-    -- Make TS keywords italic
     vim.api.nvim_set_hl(0, "@keyword", { italic = true })
     vim.api.nvim_set_hl(0, "@keyword.function", { italic = true })
     vim.api.nvim_set_hl(0, "@keyword.import", { italic = true })
     vim.api.nvim_set_hl(0, "@keyword.export", { italic = true })
 
-    -- Make types italic (TypeScript, TSX)
     vim.api.nvim_set_hl(0, "@type", { italic = true })
     vim.api.nvim_set_hl(0, "@type.builtin", { italic = true })
 
-    -- Make React component names italic
+    -- React components / function names NOT italic
     vim.api.nvim_set_hl(0, "@function", { italic = false })
     vim.api.nvim_set_hl(0, "@function.call", { italic = false })
 
-    -- Props, variables stay normal
     vim.api.nvim_set_hl(0, "@variable", { italic = false })
     vim.api.nvim_set_hl(0, "@property", { italic = false })
   end,
@@ -48,5 +45,39 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
       vim.wo.wrap = true
       vim.wo.linebreak = true
     end
+  end,
+})
+
+-- VSCode-like TXT mode
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "text",
+  callback = function()
+    vim.diagnostic.enable(false)
+    -- Disable CMP (completion)
+    local ok, cmp = pcall(require, "cmp")
+    if ok then
+      cmp.setup.buffer({ enabled = false })
+    end
+
+    --------------------------------------------------------
+    -- 2. Make EVERYTHING beige + italic (like VSCode screenshot)
+    --------------------------------------------------------
+    local beige = "#a8967d" -- pick your VSCode beige shade
+
+    -- Editor text
+    vim.api.nvim_set_hl(0, "Normal", { fg = beige, italic = true })
+    vim.api.nvim_set_hl(0, "NormalFloat", { fg = beige, italic = true })
+
+    -- Comments (some txt syntax providers mark bullets as comments)
+    vim.api.nvim_set_hl(0, "Comment", { fg = beige, italic = true })
+
+    -- Disable hiding / ghost text from cmp
+    vim.api.nvim_set_hl(0, "CmpGhostText", { fg = "NONE" })
+
+    --------------------------------------------------------
+    -- 3. Stop treesitter from trying to highlight anything
+    --------------------------------------------------------
+    vim.cmd("syntax off")
+    vim.cmd("setlocal nospell")
   end,
 })

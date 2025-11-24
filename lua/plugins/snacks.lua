@@ -4,11 +4,8 @@ return {
     opts = {
       picker = {
         sources = {
-          -- files = {
-          --   prefer_git = false,   -- << force non-git ALWAYS
-          -- },
           grep = {
-            prefer_git = false, -- << force ripgrep ALWAYS
+            prefer_git = false, -- << forwce ripgrep ALWAYS
           },
         },
       },
