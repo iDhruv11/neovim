@@ -36,3 +36,8 @@ end, { desc = "Open terminal in new empty buffer" })
 
 -- Make <Esc> exit terminal mode
 vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { noremap = true, silent = true })
+
+-- Shift-B to go to first non-whitespace char i.e. start of the line where text starts
+vim.keymap.set({ "n", "v" }, "B", "^", { noremap = true, silent = true })
+-- Shift-E to go to end of line
+vim.keymap.set({ "n", "v" }, "E", "$", { noremap = true, silent = true })

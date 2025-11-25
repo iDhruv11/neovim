@@ -62,7 +62,7 @@ vim.api.nvim_create_autocmd("FileType", {
     --------------------------------------------------------
     -- 2. Make EVERYTHING beige + italic (like VSCode screenshot)
     --------------------------------------------------------
-    local beige = "#a8967d" -- pick your VSCode beige shade
+    local beige = "#737992" -- pick your VSCode beige shade
 
     -- Editor text
     vim.api.nvim_set_hl(0, "Normal", { fg = beige, italic = true })
