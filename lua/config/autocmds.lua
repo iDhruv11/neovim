@@ -60,16 +60,16 @@ vim.api.nvim_create_autocmd("FileType", {
     end
 
     --------------------------------------------------------
-    -- 2. Make EVERYTHING beige + italic (like VSCode screenshot)
+    -- 2. Make EVERYTHING fontColor + italic (like VSCode screenshot)
     --------------------------------------------------------
-    local beige = "#737992" -- pick your VSCode beige shade
+    local fontColor = "#c5c9c7" -- pick your VSCode fontColor shade
 
     -- Editor text
-    vim.api.nvim_set_hl(0, "Normal", { fg = beige, italic = true })
-    vim.api.nvim_set_hl(0, "NormalFloat", { fg = beige, italic = true })
+    vim.api.nvim_set_hl(0, "Normal", { fg = fontColor, italic = true })
+    vim.api.nvim_set_hl(0, "NormalFloat", { fg = fontColor, italic = true })
 
     -- Comments (some txt syntax providers mark bullets as comments)
-    vim.api.nvim_set_hl(0, "Comment", { fg = beige, italic = true })
+    vim.api.nvim_set_hl(0, "Comment", { fg = fontColor, italic = true })
 
     -- Disable hiding / ghost text from cmp
     vim.api.nvim_set_hl(0, "CmpGhostText", { fg = "NONE" })
