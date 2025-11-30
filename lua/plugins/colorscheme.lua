@@ -62,6 +62,9 @@ return {
       --
       --   vim.api.nvim_set_hl(0, "CursorNormal", { bg = "#dac59c", fg = "#1e1e2e" })
       --   vim.api.nvim_set_hl(0, "CursorInsert", { bg = "#ffffff", fg = "#1e1e2e" })
+      -- vim.api.nvim_set_hl(0, "CursorLine", { bg = "none" }) -- or "#1e1e1e", etc
+      -- local cl = vim.api.nvim_get_hl(0, { name = "CursorLine" })
+      -- vim.api.nvim_set_hl(0, "NeoTreeCursorLine", { bg = cl.bg })
     end,
   },
   -- custom catppuccin (comment out if you want default)
@@ -115,6 +118,9 @@ return {
       -- -- Set cursor highlight groups
       -- vim.api.nvim_set_hl(0, "CursorNormal", { bg = "#9fb5fd", fg = "#1e1e2e" })
       -- vim.api.nvim_set_hl(0, "CursorInsert", { bg = "#ecf0ff", fg = "#1e1e2e" })
+      -- vim.api.nvim_set_hl(0, "CursorLine", { bg = "none" }) -- or "#1e1e1e", etc
+      -- local cl = vim.api.nvim_get_hl(0, { name = "CursorLine" })
+      -- vim.api.nvim_set_hl(0, "NeoTreeCursorLine", { bg = cl.bg })
     end,
   },
 
@@ -146,6 +152,9 @@ return {
       -- -- Set cursor highlight groups
       -- vim.api.nvim_set_hl(0, "CursorNormal", { bg = "#9fb5fd", fg = "#1e1e2e" })
       -- vim.api.nvim_set_hl(0, "CursorInsert", { bg = "#ecf0ff", fg = "#1e1e2e" })
+      -- vim.api.nvim_set_hl(0, "CursorLine", { bg = "none" }) -- or "#1e1e1e", etc
+      -- local cl = vim.api.nvim_get_hl(0, { name = "CursorLine" })
+      -- vim.api.nvim_set_hl(0, "NeoTreeCursorLine", { bg = cl.bg })
     end,
   },
   {
@@ -165,8 +174,11 @@ return {
         "r-cr:block-CursorNormal",
       }, ",")
       -- Set cursor highlight groups
-      vim.api.nvim_set_hl(0, "CursorNormal", { bg = "#cdb374", fg = "#1e1e2e" })
+      vim.api.nvim_set_hl(0, "CursorNormal", { bg = "#8292ac", fg = "#1e1e2e" })
       vim.api.nvim_set_hl(0, "CursorInsert", { bg = "#ecf0ff", fg = "#1e1e2e" })
+      vim.api.nvim_set_hl(0, "CursorLine", { bg = "#1c1f24" }) -- none = no highlight. Comment out below lines so that it is visible in neo-tree
+      local cl = vim.api.nvim_get_hl(0, { name = "CursorLine" })
+      vim.api.nvim_set_hl(0, "NeoTreeCursorLine", { bg = cl.bg })
     end,
   },
 }

@@ -39,3 +39,9 @@ vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { noremap = true, silent = true })
 
 -- Shift-B to go to first non-whitespace char i.e. start of the line where text starts
 vim.keymap.set({ "n", "v" }, "B", "^", { noremap = true, silent = true })
+
+-- Ctrl D + cursor centered
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+
+-- Ctrl U + cursor centered
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
