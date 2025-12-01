@@ -19,24 +19,24 @@ vim.api.nvim_create_autocmd("InsertLeave", {
 })
 
 -- Remove ALL bold + apply your italic rules
-vim.api.nvim_create_autocmd("ColorScheme", {
-  callback = function()
-    vim.api.nvim_set_hl(0, "@keyword", { italic = true })
-    vim.api.nvim_set_hl(0, "@keyword.function", { italic = true })
-    vim.api.nvim_set_hl(0, "@keyword.import", { italic = true })
-    vim.api.nvim_set_hl(0, "@keyword.export", { italic = true })
-
-    vim.api.nvim_set_hl(0, "@type", { italic = true })
-    vim.api.nvim_set_hl(0, "@type.builtin", { italic = true })
-
-    -- React components / function names NOT italic
-    vim.api.nvim_set_hl(0, "@function", { italic = false })
-    vim.api.nvim_set_hl(0, "@function.call", { italic = false })
-
-    vim.api.nvim_set_hl(0, "@variable", { italic = false })
-    vim.api.nvim_set_hl(0, "@property", { italic = false })
-  end,
-})
+-- vim.api.nvim_create_autocmd("ColorScheme", {
+--   callback = function()
+--     vim.api.nvim_set_hl(0, "@keyword", { italic = true })
+--     vim.api.nvim_set_hl(0, "@keyword.function", { italic = true })
+--     vim.api.nvim_set_hl(0, "@keyword.import", { italic = true })
+--     vim.api.nvim_set_hl(0, "@keyword.export", { italic = true })
+--
+--     vim.api.nvim_set_hl(0, "@type", { italic = true })
+--     vim.api.nvim_set_hl(0, "@type.builtin", { italic = true })
+--
+--     -- React components / function names NOT italic
+--     vim.api.nvim_set_hl(0, "@function", { italic = false })
+--     vim.api.nvim_set_hl(0, "@function.call", { italic = false })
+--
+--     vim.api.nvim_set_hl(0, "@variable", { italic = false })
+--     vim.api.nvim_set_hl(0, "@property", { italic = false })
+--   end,
+-- })
 
 -- Force wrapping for any floating window
 vim.api.nvim_create_autocmd("BufWinEnter", {
@@ -79,5 +79,46 @@ vim.api.nvim_create_autocmd("FileType", {
     --------------------------------------------------------
     vim.cmd("syntax off")
     vim.cmd("setlocal nospell")
+  end,
+})
+
+-- CursorLine highlight for UI tools only (snacks, grep, NeoTree, telescope)
+vim.api.nvim_set_hl(0, "CursorLine", { bg = "#3c3937" }) -- enabled globally for UIs
+
+local ui_ft = {
+  "snacks",
+  "neo-tree",
+  "TelescopePrompt",
+  "TelescopeResults",
+  "lazy",
+  "qf",
+  "Trouble",
+  "help",
+}
+
+local function is_ui(ft)
+  for _, x in ipairs(ui_ft) do
+    if ft == x or ft:match(x) then
+      return true
+    end
+  end
+  return false
+end
+
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+  callback = function(e)
+    local ft = vim.bo[e.buf].filetype
+
+    -- LazyVim dashboard buffers often have ft="" or "lazyvim"
+    if ft == "" or ft == "dashboard" or ft == "lazyvim" then
+      vim.opt_local.cursorline = false
+      return
+    end
+
+    if is_ui(ft) then
+      vim.opt_local.cursorline = true -- enable for fuzzy/UI
+    else
+      vim.opt_local.cursorline = false -- disable for normal editor
+    end
   end,
 })

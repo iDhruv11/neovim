@@ -8,20 +8,20 @@ return {
         dim_inactive = false,
         palette_overrides = {
           -- Dull Version
-          bright_red = "#e2534c",
-          bright_orange = "#ea7e40",
-          bright_yellow = "#e0ac32",
+          -- bright_red = "#e2534c",
+          -- bright_orange = "#ea7e40",
+          -- bright_yellow = "#e0ac32",
 
           -- More dull
-          -- bright_red = "#ea6b64",
-          -- bright_orange = "#ea894f",
-          -- bright_yellow = "#dba655",
+          bright_red = "#ea6b64",
+          bright_orange = "#ea894f",
+          bright_yellow = "#dba655",
 
           -- Dull green Option 1
-          bright_green = "#c5c850",
+          -- bright_green = "#c5c850",
 
           -- More Dull green Option 2
-          -- bright_green = "#acbb67",
+          bright_green = "#acbb67",
 
           -- Brightest: comment out everything
           dark0_hard = "#1c2020",
@@ -50,21 +50,19 @@ return {
         },
       })
 
-      vim.o.background = "dark"
-      --   vim.cmd.colorscheme("gruvbox")
-      --
-      --   -- Cursor for gruvbox only
-      --   vim.opt.guicursor = table.concat({
-      --     "n-v-c:block-CursorNormal",
-      --     "i:block-CursorInsert",
-      --     "r-cr:block-CursorNormal",
-      --   }, ",")
-      --
-      --   vim.api.nvim_set_hl(0, "CursorNormal", { bg = "#dac59c", fg = "#1e1e2e" })
-      --   vim.api.nvim_set_hl(0, "CursorInsert", { bg = "#ffffff", fg = "#1e1e2e" })
-      -- vim.api.nvim_set_hl(0, "CursorLine", { bg = "none" }) -- or "#1e1e1e", etc
-      -- local cl = vim.api.nvim_get_hl(0, { name = "CursorLine" })
-      -- vim.api.nvim_set_hl(0, "NeoTreeCursorLine", { bg = cl.bg })
+      -- vim.o.background = "dark"
+      vim.cmd.colorscheme("gruvbox")
+      -- Cursor for gruvbox only
+      vim.opt.guicursor = table.concat({
+        "n-v-c:block-CursorNormal",
+        "i:block-CursorInsert",
+        "r-cr:block-CursorNormal",
+      }, ",")
+      -- Cursor block color
+      vim.api.nvim_set_hl(0, "CursorNormal", { bg = "#dac59c", fg = "#1e1e2e" })
+      vim.api.nvim_set_hl(0, "CursorInsert", { bg = "#ffffff", fg = "#1e1e2e" })
+      -- Line highlight color for file buffers (for fzf, grep, neotree see config/autocmds.lua)
+      vim.api.nvim_set_hl(0, "CursorLine", { bg = "none" }) -- or "#1e1e1e", etc
     end,
   },
   -- custom catppuccin (comment out if you want default)
@@ -108,7 +106,7 @@ return {
       },
     },
     config = function(_, opts)
-      require("catppuccin").setup(opts)
+      -- require("catppuccin").setup(opts)
       -- vim.cmd.colorscheme("catppuccin")
       -- vim.opt.guicursor = table.concat({
       --   "n-v-c:block-CursorNormal",
@@ -118,9 +116,8 @@ return {
       -- -- Set cursor highlight groups
       -- vim.api.nvim_set_hl(0, "CursorNormal", { bg = "#9fb5fd", fg = "#1e1e2e" })
       -- vim.api.nvim_set_hl(0, "CursorInsert", { bg = "#ecf0ff", fg = "#1e1e2e" })
-      -- vim.api.nvim_set_hl(0, "CursorLine", { bg = "none" }) -- or "#1e1e1e", etc
-      -- local cl = vim.api.nvim_get_hl(0, { name = "CursorLine" })
-      -- vim.api.nvim_set_hl(0, "NeoTreeCursorLine", { bg = cl.bg })
+      -- -- Line highlight color for file buffers (for fzf, grep, neotree see config/autocmds.lua)
+      -- -- vim.api.nvim_set_hl(0, "CursorLine", { bg = "none" }) -- or "#1e1e1e", etc
     end,
   },
 
@@ -142,7 +139,7 @@ return {
       night_brightness = 0,
     },
     config = function(_, opts)
-      require("tokyonight").setup(opts)
+      -- require("tokyonight").setup(opts)
       -- vim.cmd.colorscheme("tokyonight")
       -- vim.opt.guicursor = table.concat({
       --   "n-v-c:block-CursorNormal",
@@ -152,9 +149,8 @@ return {
       -- -- Set cursor highlight groups
       -- vim.api.nvim_set_hl(0, "CursorNormal", { bg = "#9fb5fd", fg = "#1e1e2e" })
       -- vim.api.nvim_set_hl(0, "CursorInsert", { bg = "#ecf0ff", fg = "#1e1e2e" })
+      -- -- Line highlight color for file buffers (for fzf, grep, neotree see config/autocmds.lua)
       -- vim.api.nvim_set_hl(0, "CursorLine", { bg = "none" }) -- or "#1e1e1e", etc
-      -- local cl = vim.api.nvim_get_hl(0, { name = "CursorLine" })
-      -- vim.api.nvim_set_hl(0, "NeoTreeCursorLine", { bg = cl.bg })
     end,
   },
   {
@@ -167,18 +163,17 @@ return {
           dark = "saturated",
         },
       })
-      vim.cmd.colorscheme("kanso-zen")
-      vim.opt.guicursor = table.concat({
-        "n-v-c:block-CursorNormal",
-        "i:block-CursorInsert",
-        "r-cr:block-CursorNormal",
-      }, ",")
-      -- Set cursor highlight groups
-      vim.api.nvim_set_hl(0, "CursorNormal", { bg = "#8292ac", fg = "#1e1e2e" })
-      vim.api.nvim_set_hl(0, "CursorInsert", { bg = "#ecf0ff", fg = "#1e1e2e" })
-      vim.api.nvim_set_hl(0, "CursorLine", { bg = "#1c1f24" }) -- none = no highlight. Comment out below lines so that it is visible in neo-tree
-      local cl = vim.api.nvim_get_hl(0, { name = "CursorLine" })
-      vim.api.nvim_set_hl(0, "NeoTreeCursorLine", { bg = cl.bg })
+      -- vim.cmd.colorscheme("kanso-zen")
+      -- vim.opt.guicursor = table.concat({
+      --   "n-v-c:block-CursorNormal",
+      --   "i:block-CursorInsert",
+      --   "r-cr:block-CursorNormal",
+      -- }, ",")
+      -- -- Set cursor highlight groups
+      -- vim.api.nvim_set_hl(0, "CursorNormal", { bg = "#8292ac", fg = "#1e1e2e" })
+      -- vim.api.nvim_set_hl(0, "CursorInsert", { bg = "#ecf0ff", fg = "#1e1e2e" })
+      -- -- Line highlight color for file buffers (for fzf, grep, neotree see config/autocmds.lua)
+      -- vim.api.nvim_set_hl(0, "CursorLine", { bg = "#1c1f24" }) -- none = no highlight
     end,
   },
 }
