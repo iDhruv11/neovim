@@ -50,7 +50,7 @@ return {
         },
       })
 
-      -- vim.o.background = "dark"
+      vim.o.background = "dark"
       vim.cmd.colorscheme("gruvbox")
       -- Cursor for gruvbox only
       vim.opt.guicursor = table.concat({
@@ -117,7 +117,7 @@ return {
       -- vim.api.nvim_set_hl(0, "CursorNormal", { bg = "#9fb5fd", fg = "#1e1e2e" })
       -- vim.api.nvim_set_hl(0, "CursorInsert", { bg = "#ecf0ff", fg = "#1e1e2e" })
       -- -- Line highlight color for file buffers (for fzf, grep, neotree see config/autocmds.lua)
-      -- -- vim.api.nvim_set_hl(0, "CursorLine", { bg = "none" }) -- or "#1e1e1e", etc
+      -- vim.api.nvim_set_hl(0, "CursorLine", { bg = "none" }) -- or "#1e1e1e", etc
     end,
   },
 

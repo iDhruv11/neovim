@@ -7,16 +7,12 @@ return {
 
   -- icon provider for neo-tree + everywhere else
   {
-    "nvim-tree/nvim-web-devicons",
-    lazy = false,
-    priority = 1000,
-  },
-  {
     "DaikyXendo/nvim-material-icon",
     lazy = false,
     priority = 1000,
     config = function()
       require("nvim-web-devicons").setup({
+        lazy = false,
         color_icons = true,
         variant = "dark",
         override = {

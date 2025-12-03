@@ -62,11 +62,11 @@ vim.api.nvim_create_autocmd("FileType", {
     --------------------------------------------------------
     -- 2. Make EVERYTHING fontColor + italic (like VSCode screenshot)
     --------------------------------------------------------
-    local fontColor = "#c5c9c7" -- pick your VSCode fontColor shade
+    local fontColor = "#978a78" -- pick your VSCode fontColor shade
 
     -- Editor text
-    vim.api.nvim_set_hl(0, "Normal", { fg = fontColor, italic = true })
-    vim.api.nvim_set_hl(0, "NormalFloat", { fg = fontColor, italic = true })
+    vim.api.nvim_set_hl(0, "Normal", { fg = fontColor, italic = false })
+    vim.api.nvim_set_hl(0, "NormalFloat", { fg = fontColor, italic = false })
 
     -- Comments (some txt syntax providers mark bullets as comments)
     vim.api.nvim_set_hl(0, "Comment", { fg = fontColor, italic = true })
