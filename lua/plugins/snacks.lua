@@ -5,8 +5,14 @@ return {
       picker = {
         sources = {
           grep = {
-            prefer_git = false, -- << forwce ripgrep ALWAYS
+            prefer_git = false, -- force ripgrep ALWAYS
           },
+        },
+      },
+      zen = {
+        toggles = {
+          dim = false, -- twilight dimming disabled by default (enable using <leader>uD)
+          git_signs = true,
         },
       },
     },

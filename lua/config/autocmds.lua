@@ -62,7 +62,8 @@ vim.api.nvim_create_autocmd("FileType", {
     --------------------------------------------------------
     -- 2. Make EVERYTHING fontColor + italic (like VSCode screenshot)
     --------------------------------------------------------
-    local fontColor = "#978a78" -- pick your VSCode fontColor shade
+    -- local fontColor = "#978a78" -- gruv box text color
+    local fontColor = "#767a8e" -- catpuccine/tokyo night/kanso text color
 
     -- Editor text
     vim.api.nvim_set_hl(0, "Normal", { fg = fontColor, italic = false })
@@ -81,9 +82,6 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.cmd("setlocal nospell")
   end,
 })
-
--- CursorLine highlight for UI tools only (snacks, grep, NeoTree, telescope)
-vim.api.nvim_set_hl(0, "CursorLine", { bg = "#3c3937" }) -- enabled globally for UIs
 
 local ui_ft = {
   "snacks",
@@ -122,3 +120,22 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
     end
   end,
 })
+
+-- Same as above but the cursorline number is highlighted (useful if cursor trail is disabled in terminal)
+--
+-- vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+--   callback = function(e)
+--     local ft = vim.bo[e.buf].filetype
+--     vim.opt_local.cursorline = true
+--
+--     -- LazyVim dashboard buffers often have ft="" or "lazyvim"
+--     if ft == "" or ft == "dashboard" or ft == "lazyvim" then
+--       return
+--     end
+--
+--     if is_ui(ft) then
+--     else
+--       vim.api.nvim_set_hl(0, "CursorLine", { bg = "NONE", undercurl = false, underline = false })
+--     end
+--   end,
+-- })

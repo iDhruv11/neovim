@@ -6,6 +6,13 @@ return {
       require("gruvbox").setup({
         contrast = "hard",
         dim_inactive = false,
+        italic = {
+          strings = false,
+          emphasis = true,
+          comments = true,
+          operators = false,
+          folds = true,
+        },
         palette_overrides = {
           -- Dull Version
           -- bright_red = "#e2534c",
@@ -28,8 +35,8 @@ return {
         },
         overrides = {
           --   -- keep types normal (not bold)
-          --   ["@type"] = { bold = true },
-          --   ["@type.builtin"] = { bold = true },
+          -- ["@type"] = { bold = true },
+          -- ["@type.builtin"] = { bold = true },
           -- ["@keyword.storage"] = { bold = false, italic = false },
           -- ["@keyword.exception"] = { bold = false, italic = false },
           -- ["@conditional"] = { bold = false, italic = false },
@@ -50,19 +57,25 @@ return {
         },
       })
 
-      vim.o.background = "dark"
-      vim.cmd.colorscheme("gruvbox")
-      -- Cursor for gruvbox only
-      vim.opt.guicursor = table.concat({
-        "n-v-c:block-CursorNormal",
-        "i:block-CursorInsert",
-        "r-cr:block-CursorNormal",
-      }, ",")
-      -- Cursor block color
-      vim.api.nvim_set_hl(0, "CursorNormal", { bg = "#dac59c", fg = "#1e1e2e" })
-      vim.api.nvim_set_hl(0, "CursorInsert", { bg = "#ffffff", fg = "#1e1e2e" })
-      -- Line highlight color for file buffers (for fzf, grep, neotree see config/autocmds.lua)
-      vim.api.nvim_set_hl(0, "CursorLine", { bg = "none" }) -- or "#1e1e1e", etc
+      -- vim.o.background = "dark"
+      -- vim.cmd.colorscheme("gruvbox")
+      --
+      -- -- Cursor for gruvbox only
+      -- vim.opt.guicursor = table.concat({
+      --   "n-v-c:block-CursorNormal",
+      --   "i:block-CursorInsert",
+      --   "r-cr:block-CursorNormal",
+      -- }, ",")
+      --
+      -- -- Cursor block color
+      -- vim.api.nvim_set_hl(0, "CursorNormal", { bg = "#dac59c", fg = "#1e1e2e" })
+      -- vim.api.nvim_set_hl(0, "CursorInsert", { bg = "#ffffff", fg = "#1e1e2e" })
+      --
+      -- -- Line highlight color for file buffers (for fzf, grep, neotree see config/autocmds.lua)
+      -- vim.api.nvim_set_hl(0, "CursorLine", { bg = "none" }) -- or "#1e1e1e", etc
+      --
+      -- -- CursorLine highlight for UI tools only (snacks, grep, NeoTree, telescope)
+      -- vim.api.nvim_set_hl(0, "CursorLine", { bg = "#3c3937" }) -- enabled globally for UIs
     end,
   },
   -- custom catppuccin (comment out if you want default)
@@ -113,11 +126,16 @@ return {
       --   "i:block-CursorInsert",
       --   "r-cr:block-CursorNormal",
       -- }, ",")
+      --
       -- -- Set cursor highlight groups
       -- vim.api.nvim_set_hl(0, "CursorNormal", { bg = "#9fb5fd", fg = "#1e1e2e" })
       -- vim.api.nvim_set_hl(0, "CursorInsert", { bg = "#ecf0ff", fg = "#1e1e2e" })
+      --
       -- -- Line highlight color for file buffers (for fzf, grep, neotree see config/autocmds.lua)
       -- vim.api.nvim_set_hl(0, "CursorLine", { bg = "none" }) -- or "#1e1e1e", etc
+      --
+      -- -- -- CursorLine highlight for UI tools only (snacks, grep, NeoTree, telescope)
+      -- vim.api.nvim_set_hl(0, "CursorLine", { bg = "#45475b" }) -- enabled globally for UIs
     end,
   },
 
@@ -146,9 +164,11 @@ return {
       --   "i:block-CursorInsert",
       --   "r-cr:block-CursorNormal",
       -- }, ",")
+
       -- -- Set cursor highlight groups
       -- vim.api.nvim_set_hl(0, "CursorNormal", { bg = "#9fb5fd", fg = "#1e1e2e" })
       -- vim.api.nvim_set_hl(0, "CursorInsert", { bg = "#ecf0ff", fg = "#1e1e2e" })
+
       -- -- Line highlight color for file buffers (for fzf, grep, neotree see config/autocmds.lua)
       -- vim.api.nvim_set_hl(0, "CursorLine", { bg = "none" }) -- or "#1e1e1e", etc
     end,
@@ -156,24 +176,44 @@ return {
   {
     "webhooked/kanso.nvim",
     lazy = false,
+    priority = 1000,
     config = function()
       require("kanso").setup({
         bold = false,
-        foreground = {
-          dark = "saturated",
+        italics = false,
+        commentStyle = { italic = true },
+        keywordStyle = { italic = true },
+        background = {
+          dark = "zen",
         },
+        foreground = "saturated",
+
+        -- Overrides must be a function that returns a table of highlights
+        overrides = function(colors)
+          return {
+            CursorNormal = { bg = "#9ba8bd", fg = "#000000" },
+            CursorInsert = { bg = "#ecf0ff", fg = "#000000" },
+            -- CursorLine = { bg = "#45475b" },
+            -- Add these lines to remove the underline from LSP references
+            LspReferenceText = { bg = "None", underline = false },
+            LspReferenceWrite = { bg = "None", underline = false },
+            LspReferenceRead = { bg = "None", underline = false },
+          }
+        end,
       })
-      -- vim.cmd.colorscheme("kanso-zen")
-      -- vim.opt.guicursor = table.concat({
-      --   "n-v-c:block-CursorNormal",
-      --   "i:block-CursorInsert",
-      --   "r-cr:block-CursorNormal",
-      -- }, ",")
-      -- -- Set cursor highlight groups
-      -- vim.api.nvim_set_hl(0, "CursorNormal", { bg = "#8292ac", fg = "#1e1e2e" })
-      -- vim.api.nvim_set_hl(0, "CursorInsert", { bg = "#ecf0ff", fg = "#1e1e2e" })
-      -- -- Line highlight color for file buffers (for fzf, grep, neotree see config/autocmds.lua)
-      -- vim.api.nvim_set_hl(0, "CursorLine", { bg = "#1c1f24" }) -- none = no highlight
+
+      -- 1. Load the colorscheme
+      vim.cmd.colorscheme("kanso-zen")
+
+      -- 2. Set the cursor behavior
+      vim.opt.guicursor = table.concat({
+        "n-v-c:block-CursorNormal",
+        "i:block-CursorInsert",
+        "r-cr:block-CursorNormal",
+      }, ",")
+
+      -- 3. Ensure termguicolors is on for Kitty to see these hex codes
+      vim.opt.termguicolors = true
     end,
   },
 }

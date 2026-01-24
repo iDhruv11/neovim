@@ -8,7 +8,7 @@ vim.keymap.set("i", "<C-H>", "<C-W>", { noremap = true })
 vim.keymap.set("i", "<A-d>", "<C-o>dw", { noremap = true })
 
 -- open terminal vetically as a window
-vim.keymap.set("n", "<leader>tt", function()
+vim.keymap.set("n", "<leader>tv", function()
   vim.cmd("vsplit") -- copy same buffer vertically
   vim.cmd("terminal") -- turn buffer into terminal
   vim.bo.buflisted = false -- terminal buffers shouldn't appear in buffer lists
@@ -17,7 +17,7 @@ vim.keymap.set("n", "<leader>tt", function()
 end, { desc = "Vertical Terminal" })
 
 -- open terminal horizontally as a window
-vim.keymap.set("n", "<leader>tT", function()
+vim.keymap.set("n", "<leader>ts", function()
   vim.cmd("split") -- copy same buffer horizontally
   vim.cmd("terminal") -- turn buffer into terminal
   vim.bo.buflisted = false
